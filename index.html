@@ -88,11 +88,12 @@
             } else if (peso.value >= 100) {
                 pesoContainer.style.display = 'none'
                 obesa.src = 'obesa.jpg.png'
-                obesa.style.width = '33%'
-                obesa.style.height = '33%'
+                obesa.style.width = '450px'
+                obesa.style.height = '450px'
                 audio.src = 'cancion_saturada.mp3'
                 obesa.classList.add('rotar')
                 audio.play()
+                audio.loop = true
                 container.appendChild(obesa)
             }
             
