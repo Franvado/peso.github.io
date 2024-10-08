@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peso</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: rgb(101, 175, 255);
+            font-family: system-ui;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .peso-container{
+            display: flex;
+            flex-direction: column;
+            row-gap: 16px;
+            padding: 10px 15px;
+            animation: fade-in 1s ease;
+        }
+        .peso-container label {
+            font-size: 24px;
+            color: white;
+        }
+        #peso{
+            outline: 0;
+            padding: 4px 6px;
+        }
+        #enviar{
+            width: 100px;
+            padding: 5px 0;
+            display: block;
+            margin: 0 auto;
+            font-size: 16px;
+            background-color: rgb(0, 255, 140);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        #enviar:hover{
+            background-color: rgb(5, 197, 110);
+            scale: 1.10;
+        }
+        .rotar{
+            animation: rotacion 10s linear infinite;
+        }
+        @keyframes fade-in {
+            0%{
+                opacity: 0;
+                transform: translateX(-400px);
+            }
+            100%{
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+        @keyframes rotacion {
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <script type="module">
+        const peso = document.getElementById('peso')
+        const enviar = document.getElementById('enviar')
+        const container = document.querySelector('.container')
+        const pesoContainer = document.querySelector('.peso-container')
+        const obesa = new Image()
+        const audio = new Audio()
+        enviar.addEventListener('click', () =>{
+            if (isNaN(peso.value) || peso.value == '') {
+                alert('Ingresa una cantidad en KG')
+            } else if (peso.value <= 99) {
+                alert('ingresa más de 100')
+            } else if (peso.value >= 100) {
+                pesoContainer.style.display = 'none'
+                obesa.src = 'obesa.jpg.png'
+                obesa.style.width = '33%'
+                obesa.style.height = '33%'
+                audio.src = 'cancion_saturada.mp3'
+                obesa.classList.add('rotar')
+                audio.play()
+                container.appendChild(obesa)
+            }
+            
+        })
+    </script>
+</head>
+
+<body>
+    <main class="container">
+        <section class="peso-container">
+            <label for="peso">Agrega tu peso en KG</label>
+            <input type="text" name="peso" id="peso">
+            <button id="enviar">Enviar</button>
+        </section>
+    </main>
+</body>
+</html>
